@@ -1,0 +1,37 @@
+- job:
+    name: ansible-role-grafyaml
+    run: tests/test.yaml
+    roles:
+      - zuul: openstack/ansible-role-grafyaml
+
+- job:
+    name: ansible-role-grafyaml-fedora-27
+    parent: ansible-role-grafyaml
+    nodeset: fedora-27
+
+- job:
+    name: ansible-role-grafyaml-ubuntu-bionic
+    parent: ansible-role-grafyaml
+    nodeset: ubuntu-bionic
+
+- job:
+    name: ansible-role-grafyaml-ubuntu-xenial
+    parent: ansible-role-grafyaml
+    nodeset: ubuntu-xenial
+
+- project:
+    templates:
+      - windmill-jobs-fedora-27
+      - windmill-jobs-bionic
+      - windmill-jobs-xenial
+    check:
+      jobs:
+        - ansible-role-grafyaml-fedora-27
+        - ansible-role-grafyaml-ubuntu-bionic
+        - ansible-role-grafyaml-ubuntu-xenial
+        - tox-linters
+    gate:
+      jobs:
+        - ansible-role-grafyaml-fedora-27
+        - ansible-role-grafyaml-ubuntu-xenial
+        - tox-linters
