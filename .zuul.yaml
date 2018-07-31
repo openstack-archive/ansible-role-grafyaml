@@ -33,5 +33,6 @@
     gate:
       jobs:
         - ansible-role-grafyaml-fedora-latest
+        - ansible-role-grafyaml-ubuntu-bionic
         - ansible-role-grafyaml-ubuntu-xenial
         - tox-linters
