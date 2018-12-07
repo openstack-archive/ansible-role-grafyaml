@@ -15,9 +15,6 @@
     nodeset: ubuntu-bionic
 
 - project:
-    templates:
-      - windmill-jobs-fedora-latest
-      - windmill-jobs-bionic
     check:
       jobs:
         - ansible-role-grafyaml-fedora-latest
